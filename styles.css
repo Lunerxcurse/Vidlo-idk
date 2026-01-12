@@ -1,0 +1,1880 @@
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #000000;
+    border-bottom: 1px solid #1a1a1a;
+    z-index: 1000;
+    padding: 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 60px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-logo img {
+    height: 160px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .nav-logo h1 {
+        display: none;
+    }
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-trigger {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #333;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #333;
+    color: #007bff;
+}
+
+.account-dropdown {
+    right: 0;
+    left: auto;
+    min-width: 200px;
+}
+
+.account-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-actions .top-search {
+    max-width: 260px;
+    width: 100%;
+}
+
+.nav-actions .top-search input {
+    width: 100%;
+}
+
+.search-btn, .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover, .profile-icon:hover {
+    background: #333;
+    border-color: #007bff;
+}
+
+.search-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #000000;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 1rem 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-overlay.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-container input {
+    flex: 1;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-container input:focus {
+    border-color: #007bff;
+}
+
+.search-close {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Search Suggestions */
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    margin-top: 0.5rem;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #333;
+}
+
+.suggestion-item img {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.suggestion-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.suggestion-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggestion-meta {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Main Content */
+.main-content {
+    margin-top: 60px;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    cursor: pointer;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide img {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content {
+    margin-left: 3rem;
+    max-width: 500px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-align: left;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    color: #cccccc;
+    text-align: left;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-section h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.movie-row {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+}
+
+.movie-row::-webkit-scrollbar {
+    height: 8px;
+}
+
+.movie-row::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.movie-row::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.movie-card {
+    flex: 0 0 160px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    border-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+.movie-poster {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster img {
+    transform: scale(1.1);
+}
+
+.movie-info {
+    padding: 0.75rem;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+.movie-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.movie-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    display: flex;
+    gap: 1px;
+}
+
+.star {
+    color: #ffd700;
+    font-size: 0.8rem;
+}
+
+.rating-text {
+    font-size: 0.85rem;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.views {
+    font-size: 0.8rem;
+    color: #999999;
+}
+
+/* Movie card hover overlay */
+.movie-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.movie-card:hover::after {
+    opacity: 1;
+}
+
+/* Play button overlay */
+.movie-card:hover .movie-poster::before {
+    content: '\f04b';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    z-index: 5;
+    opacity: 0;
+    animation: fadeInPlay 0.3s ease forwards;
+}
+
+@keyframes fadeInPlay {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Movie Detail Modal Mobile Optimization */
+.movie-detail-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+}
+
+.modal-overlay.active .movie-detail-fullscreen {
+    transform: translateY(0);
+}
+
+.movie-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 350px;
+    overflow: hidden;
+}
+
+.movie-backdrop {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-backdrop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.backdrop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 40%,
+        rgba(0, 0, 0, 0.8) 80%,
+        rgba(0, 0, 0, 0.95) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+}
+
+.hero-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.movie-poster-small {
+    flex-shrink: 0;
+    width: 140px;
+    height: 210px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-info-hero {
+    flex: 1;
+    color: white;
+}
+
+.movie-info-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+
+.movie-meta-hero {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.movie-meta-hero .year {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.movie-meta-hero .rating {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.movie-meta-hero .duration {
+    color: #cccccc;
+    font-size: 0.95rem;
+}
+
+.movie-info-hero .description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.main-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.play-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+    min-height: 48px;
+}
+
+.play-button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 123, 255, 0.4);
+}
+
+.trailer-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-height: 48px;
+}
+
+.trailer-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.action-btn-round {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 44px;
+}
+
+.action-btn-round:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.action-btn-round.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.movie-detail-sections {
+    padding: 2rem 1.5rem;
+    background: #0a0a0a;
+}
+
+.detail-section {
+    margin-bottom: 2.5rem;
+}
+
+.detail-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.season-selector {
+    margin-bottom: 2rem;
+}
+
+.season-selector select {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: white;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.season-selector select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.episode-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.episode-card:hover {
+    transform: translateY(-4px);
+    border-color: #007bff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.episode-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.episode-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.episode-play-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.9);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.episode-card:hover .episode-play-btn {
+    opacity: 1;
+}
+
+.episode-info {
+    padding: 1.5rem;
+}
+
+.episode-number {
+    color: #007bff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.episode-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.episode-description {
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.episode-duration {
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+}
+
+.similar-movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.similar-movie-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.similar-movie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.similar-movie-poster {
+    width: 100%;
+    height: 280px;
+    position: relative;
+}
+
+.similar-movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.similar-movie-info {
+    padding: 1rem;
+}
+
+.similar-movie-title {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.similar-movie-meta {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.movie-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.detail-label {
+    color: #999;
+    font-weight: 600;
+    min-width: 100px;
+    margin-right: 1rem;
+}
+
+.detail-value {
+    color: white;
+    flex: 1;
+}
+
+/* Page Overlay Styles */
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0a0a0a;
+    z-index: 2500;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+.page-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-top: 60px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.page-content {
+    width: 100%;
+}
+
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #cccccc;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #666;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    opacity: 0.8;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Grid Movie Card Styles */
+.movies-grid .movie-card {
+    flex: none;
+    width: 100%;
+}
+
+.movies-grid .movie-card .movie-info {
+    padding: 1rem;
+}
+
+.movies-grid .movie-card .movie-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Mobile Responsive for Pages */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 1rem;
+    }
+    
+    .page-header {
+        padding-top: 60px;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+    }
+    
+    .empty-state h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    /* Hide search and account buttons on mobile */
+    .nav-actions {
+        display: none;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+        height: 56px;
+    }
+
+    .nav-menu {
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.75rem 0;
+    }
+
+    .search-btn, .profile-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .search-overlay {
+        padding: 0.75rem 1rem;
+    }
+
+    .hero-slide {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        justify-content: center;
+    }
+
+    .hero-slide img {
+        width: 180px;
+        height: 270px;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .content-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .movie-card {
+        flex: 0 0 140px;
+        min-height: 240px;
+    }
+
+    .movie-poster {
+        height: 200px;
+    }
+
+    .movie-info {
+        padding: 0.75rem;
+    }
+
+    .movie-title {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+
+    .movie-meta {
+        gap: 0.25rem;
+    }
+
+    .rating {
+        gap: 0.25rem;
+    }
+
+    .stars {
+        gap: 1px;
+    }
+
+    .star {
+        font-size: 0.7rem;
+    }
+
+    .rating-text, .views {
+        font-size: 0.75rem;
+    }
+
+    .movie-detail-content {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .movie-detail .movie-poster {
+        width: 100%;
+        height: 300px;
+        min-height: auto;
+    }
+
+    .movie-info {
+        padding: 1.5rem;
+    }
+
+    .movie-info h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+
+    .movie-meta {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .action-btn {
+        justify-content: center;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+
+    .embed-controls {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .embed-source-group select {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+
+    .season-episode-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .season-episode-controls input {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        min-height: 48px;
+    }
+
+    .back-btn {
+        top: 1rem;
+        left: 1rem;
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    .close-btn {
+        top: 1rem;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    .play-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+
+    .custom-controls {
+        padding: 1rem;
+    }
+
+    .control-bar {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .control-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+
+    .volume-container {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .volume-slider {
+        flex: 1;
+        max-width: 150px;
+    }
+
+    .search-suggestions {
+        max-height: 250px;
+        margin-top: 0.25rem;
+    }
+    
+    .suggestion-item {
+        padding: 0.75rem;
+        min-height: 64px;
+    }
+    
+    .suggestion-item img {
+        width: 40px;
+        height: 60px;
+        margin-right: 0.75rem;
+    }
+
+    .suggestion-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.125rem;
+    }
+
+    .suggestion-meta {
+        font-size: 0.75rem;
+    }
+
+    .dropdown-content {
+        position: fixed;
+        top: 56px;
+        left: 0.5rem;
+        right: 0.5rem;
+        width: auto;
+        min-width: auto;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .dropdown-content a {
+        padding: 1rem;
+        font-size: 0.9rem;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .main-content {
+        margin-top: 56px;
+    }
+    
+    .hero-section {
+        height: 50vh;
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        height: 52px;
+    }
+
+    .nav-menu {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.5rem 0;
+    }
+
+    .search-btn, .profile-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .movie-card {
+        flex: 0 0 120px;
+        min-height: 200px;
+    }
+
+    .movie-poster {
+        height: 160px;
+    }
+
+    .movie-info {
+        padding: 0.5rem;
+    }
+
+    .movie-title {
+        font-size: 0.85rem;
+        line-height: 1.2;
+        margin-bottom: 0.25rem;
+    }
+
+    .hero-section {
+        height: 45vh;
+        min-height: 280px;
+    }
+
+    .hero-slide {
+        padding: 1rem 0.75rem;
+    }
+
+    .hero-slide img {
+        width: 150px;
+        height: 225px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .content-section {
+        padding: 1rem 0.75rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .movie-detail {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .movie-info h1 {
+        font-size: 1.5rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .back-btn, .close-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .dropdown-content {
+        top: 52px;
+        left: 0.25rem;
+        right: 0.25rem;
+    }
+
+    .dropdown-content a {
+        padding: 0.875rem;
+        font-size: 0.85rem;
+    }
+
+    .movie-info-hero .description {
+        display: none;
+    }
+}
+
+/* Touch and Accessibility Improvements */
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    .movie-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .movie-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    /* Better scrolling */
+    .movie-row {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .movie-card {
+        scroll-snap-align: start;
+    }
+
+    /* Improve button accessibility */
+    button, .action-btn, .control-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Better form inputs */
+    input, select {
+        min-height: 44px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    /* Safe area for notched devices */
+    .navbar {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    .nav-container {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
+
+/* Mobile Responsive for Movie Detail Page */
+@media (max-width: 768px) {
+    /* Hide these buttons on mobile */
+    .main-actions .action-btn-round,
+    .trailer-button {
+        display: none;
+    }
+
+    /* Keep only the play button */
+    .main-actions {
+        justify-content: center;
+    }
+
+    .play-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+
+    /* Adjust modal close button */
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    /* Make movie info text smaller */
+    .movie-info-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .movie-meta-hero {
+        flex-wrap: wrap;
+    }
+    
+    .description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-info-hero h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #000000;
+    border-top: 1px solid #1a1a1a;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: block;
+    }
+    
+    .main-content {
+        margin-bottom: 60px;
+    }
+    
+    .page-container {
+        padding-bottom: 80px;
+    }
+}
+
+/* Account Settings Modal Styles */
+.account-settings-modal .account-settings {
+    background: #1a1a1a;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+}
+
+.account-settings-content {
+    padding: 2rem;
+}
+
+.account-settings h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section h3 {
+    color: #007bff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item label {
+    color: #cccccc;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item select {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 0.5rem;
+    flex: 1;
+    max-width: 200px;
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #007bff;
+}
+
+.settings-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+}
+
+.action-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+}
+
+.action-btn.primary {
+    background: #007bff;
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.action-btn.secondary {
+    background: #2a2a2a;
+    color: #cccccc;
+    border: 1px solid #444;
+}
+
+.action-btn.secondary:hover {
+    background: #333;
+}
+
+.action-btn.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.action-btn.danger:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive for Account Settings */
+@media (max-width: 768px) {
+    .account-settings {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .account-settings-content {
+        padding: 1.5rem;
+    }
+    
+    .account-settings h2 {
+        font-size: 1.5rem;
+    }
+    
+    .settings-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .setting-item input[type="text"],
+    .setting-item input[type="email"],
+    .setting-item select {
+        max-width: none;
+        width: 100%;
+    }
+    
+    .settings-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-btn {
+        width: 100%;
+    }
+}
+
+.mobile-account-dropdown {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-account-dropdown.active {
+    transform: translateY(0);
+}
+
+.mobile-dropdown-content {
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+    border-radius: 12px 12px 0 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.mobile-dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid #2a2a2a;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.mobile-dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.mobile-dropdown-content a:hover {
+    background-color: #2a2a2a;
+    color: #007bff;
+}
+
+.mobile-dropdown-content i {
+    width: 16px;
+}
+
+/* Remove my list from bottom nav styling */
+.mobile-bottom-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.mobile-bottom-nav li {
+    flex: 1;
+}
+
+.mobile-bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-bottom-nav a:hover,
+.mobile-bottom-nav a.active {
+    color: #007bff;
+}
+
+.mobile-bottom-nav i {
+    font-size: 1.25rem;
+}
